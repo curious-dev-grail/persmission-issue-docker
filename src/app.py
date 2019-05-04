@@ -33,7 +33,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             print(os.path.isdir(UPLOAD_DIR))
             if not os.path.isdir(UPLOAD_DIR):
-                os.makedirs(UPLOAD_DIR)
+                os.makedirs(UPLOAD_DIR,0o777)
             file.save(os.path.join(UPLOAD_DIR, filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))

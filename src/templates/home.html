@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Upload new File</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/styles.css') }}">
+</head>
+<body>
+<header class="container text-center">
+    <img class="img-fluid py-2" src="{{ url_for('static', filename = 'images/logo.png') }}" height="200" width="400">
+</header>
+<main class="container my-4">
+    <h1 class="text-center">File Uploader</h1>
+    <form method=post enctype="multipart/form-data">
+        <div class="d-none">
+            <input type="file" name="file" id="file" required>
+        </div>
+        <div class="d-flex w-75 mx-auto">
+            <div class="d-flex flex-grow-1">
+                <input type="text" class="form-control pl-cdg-140" id="shadowFile" placeholder="Choose a File">
+                <button type="button" class="btn-red text-yellow btn choose-file-btn font-weight-bold" id = "chooseFileButton"> Choose a file
+                </button>
+            </div>
+            <button type=submit value=Upload class="btn-red text-yellow btn ml-2 font-weight-bold">Upload</button>
+        </div>
+
+    </form>
+</main>
+<footer>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js" defer></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
+    <script>
+        let shadowFile = document.getElementById("shadowFile");
+        let file = document.getElementById("file");
+        let chooseFileBtn = document.getElementById("chooseFileButton");
+        shadowFile.addEventListener("dblclick", function (event) {
+                event.preventDefault();
+                file.click();
+            }
+        );
+        chooseFileBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                file.click();
+            }
+        );
+        file.addEventListener("change", function () {
+
+            event.preventDefault();
+            var fullPath = file.value;
+            if (fullPath) {
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+            }
+
+            shadowFile.value = filename;
+            console.log(shadowFile.value);
+        })
+
+    </script>
+</footer>
+</body>
+</html>

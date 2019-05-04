@@ -1,0 +1,35 @@
+body {
+    background-color: #fce77d;
+}
+
+* {
+    color: #f96167;
+}
+
+.d-none {
+    display: none;
+}
+
+.text-yellow {
+    color: #fce77d;
+}
+
+.bg-red {
+    background-color: #f96167;
+}
+
+.btn-red {
+    background-color: rgba(249, 97, 103, 0.73);
+}
+
+.btn-red:hover {
+    background-color: #f96167;
+    color: white;
+}
+.pl-cdg-140{
+    padding-left: 140px;
+}
+.choose-file-btn{
+    position: absolute;
+    background-color: rgba(249, 97, 103, 0.8);
+}
